@@ -6,10 +6,14 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -222,5 +226,171 @@ fun ButtonExample(onButtonClicked: () -> Unit) {
 fun DefaultPreviewButton() {
     ComposestudyTheme {
         ButtonExample(onButtonClicked = {})
+    }
+}
+
+// 2023.06.12 Modifier 학습
+
+@Composable
+fun ModifierEx() {
+    // 스텝 1: modifier에 Modifier.fillMaxSize()를 사용해봅시다.
+/*    Button(
+        onClick = {},
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    // 스텝 2: fillMaxSize 대신 Modifier.height를 설정해봅시다.
+/*        Button(
+        onClick = {},
+        modifier = Modifier.height(100.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    // 스텝 3: modifier에 height와 width를 같이 설정해봅시다.
+/*    Button(
+        onClick = {},
+        modifier = Modifier
+            .height(100.dp)
+            .width(150.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    // 스텝 4: size에 width와 height를 인자로 넣을 수도 있다.
+/*    Button(
+        onClick = {},
+        modifier = Modifier.size(200.dp, 100.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    // 스텝 5: background를 설정해 봅시다. (버튼에서는 되지 않음.)
+    // colors 파라미터에 ButtonDefaults.buttonColors를 넣어 보세요.
+    // backgroundColor와 contentColor 프로퍼티를 설정하세요.
+/*    Button(
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.Magenta,
+            contentColor = Color.Cyan,
+        ),
+        onClick = {},
+        modifier = Modifier.size(200.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    // 스텝 7: Button의 modifier에 padding을 추가해봅시다.
+/*    Button(
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.Magenta,
+            contentColor = Color.Cyan,
+        ),
+        onClick = {},
+        modifier = Modifier.padding(100.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    // 스텝 8: Button의 enabled를 false로 설정하고, Text의
+    // modifier에 clickable을 넣어봅시다.
+//    Button(
+//        colors = ButtonDefaults.buttonColors(
+//            backgroundColor = Color.Magenta,
+//            contentColor = Color.Cyan,
+//        ),
+//        onClick = {},
+//        enabled = false,
+//        modifier = Modifier.size(200.dp).padding(30.dp)
+//    ) {
+//        Icon(
+//            imageVector = Icons.Filled.Search,
+//            contentDescription = null
+//        )
+//        Spacer(
+//            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+//        )
+//        Text(
+//            "Search",
+//            modifier = Modifier.clickable { }
+//        )
+//    }
+
+    // 스텝 9: Text의 modifier에 offset을 설정하고 x 파라미터를
+    // 설정합니다.
+    // 또한, offset을 눈으로 확인하기 위해 background color를 설정해봅니다.
+    Button(
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.Magenta,
+            contentColor = Color.Cyan,
+        ),
+        onClick = {},
+        modifier = Modifier.size(200.dp).padding(30.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null,
+            modifier = Modifier.background(Color.Blue)
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+                .background(Color.Blue)
+        )
+        Text(
+            "Search",
+            modifier = Modifier.offset(x = 10.dp)
+                .background(Color.Blue)
+        )
+    }
+
+}
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreviewModifier() {
+    ComposestudyTheme {
+        ModifierEx()
     }
 }
