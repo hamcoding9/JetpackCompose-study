@@ -99,16 +99,90 @@ fun Greeting(name: String) {
     // Preview에서는 텍스트 사이즈만큼 보여주기 때문에
     // modifier = Modifier.width(200.dp)나
     // modifier = Modifier.size(200.dp)를 설정해서 충분히 넓혀둔다.
-    Text(
-        modifier = Modifier.width(200.dp),
-        color = Color.Red,
-        text = "Hello $name\nHello $name\nHello $name",
-        fontSize = 30.sp,
-        fontWeight = FontWeight.Bold,
-        fontFamily = FontFamily.Cursive,
-        maxLines = 2,
-        textAlign = TextAlign.Center
-    )
+//    Text(
+//        modifier = Modifier.width(200.dp),
+//        color = Color.Red,
+//        text = "Hello $name\nHello $name\nHello $name",
+//        fontSize = 30.sp,
+//        fontWeight = FontWeight.Bold,
+//        fontFamily = FontFamily.Cursive,
+//        maxLines = 2,
+//        textAlign = TextAlign.Center
+//    )
+
+    /**
+     * surface 학습 (23.06.13)
+     */
+/*    Surface(
+        modifier = Modifier.padding(5.dp)
+    ) {
+        Text(
+            text = "Hello $name!",
+            modifier = Modifier.padding(8.dp)
+        )
+    }*/
+
+    // 스텝 1: Surface에 elevation을 설정합시다.
+//    Surface(
+//        modifier = Modifier.padding(5.dp),
+//        elevation = 10.dp
+//    ) {
+//        Text(
+//            text = "Hello $name!",
+//            modifier = Modifier.padding(8.dp)
+//        )
+//    }
+
+    // 스텝 2: border의 값을 설정해봅시다.
+//    Surface(
+//        border = BorderStroke(
+//            width = 2.dp,
+//            color = Color.Magenta
+//        ),
+//        modifier = Modifier.padding(5.dp),
+//        elevation = 5.dp
+//    ) {
+//        Text(
+//            text = "Hello $name!",
+//            modifier = Modifier.padding(8.dp)
+//        )
+//    }
+
+    // 스텝 3: Surface의 shape도 설정해봅시다.
+//    Surface(
+//        border = BorderStroke(
+//            width = 2.dp,
+//            color = Color.Magenta
+//        ),
+//        modifier = Modifier.padding(5.dp),
+//        elevation = 5.dp,
+//        shape = CircleShape
+//    ) {
+//        Text(
+//            text = "Hello $name!",
+//            modifier = Modifier.padding(8.dp)
+//        )
+//    }
+
+    // 스텝 4: color를 지정합시다.
+    // MaterialTheme.colors에서 primary, error,
+    // background, surface, secondary 등을 지정해봅시다.
+    // contentColor가 자동으로 선택됩니다.
+    Surface(
+        border = BorderStroke(
+            width = 2.dp,
+            color = Color.Magenta
+        ),
+        modifier = Modifier.padding(5.dp),
+        elevation = 5.dp,
+        shape = CircleShape,
+        color = MaterialTheme.colors.error,
+    ) {
+        Text(
+            text = "Hello $name!",
+            modifier = Modifier.padding(8.dp)
+        )
+    }
 }
 
 @Preview(showBackground = true)
@@ -368,7 +442,9 @@ fun ModifierEx() {
             contentColor = Color.Cyan,
         ),
         onClick = {},
-        modifier = Modifier.size(200.dp).padding(30.dp)
+        modifier = Modifier
+            .size(200.dp)
+            .padding(30.dp)
     ) {
         Icon(
             imageVector = Icons.Filled.Search,
@@ -376,12 +452,14 @@ fun ModifierEx() {
             modifier = Modifier.background(Color.Blue)
         )
         Spacer(
-            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+            modifier = Modifier
+                .size(ButtonDefaults.IconSpacing)
                 .background(Color.Blue)
         )
         Text(
             "Search",
-            modifier = Modifier.offset(x = 10.dp)
+            modifier = Modifier
+                .offset(x = 10.dp)
                 .background(Color.Blue)
         )
     }
