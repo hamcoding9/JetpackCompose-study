@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
@@ -110,9 +111,9 @@ fun Greeting(name: String) {
 //        textAlign = TextAlign.Center
 //    )
 
-    /**
-     * surface 학습 (23.06.13)
-     */
+/**
+ * surface 학습 (23.06.13)
+ */
 /*    Surface(
         modifier = Modifier.padding(5.dp)
     ) {
@@ -193,7 +194,9 @@ fun DefaultPreview() {
     }
 }
 
-// 버튼 학습
+/**
+ * Button 학습
+ */
 
 @Composable
 fun ButtonExample(onButtonClicked: () -> Unit) {
@@ -303,7 +306,9 @@ fun DefaultPreviewButton() {
     }
 }
 
-// 2023.06.12 Modifier 학습
+/**
+ * Modifier 학습
+ */
 
 @Composable
 fun ModifierEx() {
@@ -470,5 +475,42 @@ fun ModifierEx() {
 fun DefaultPreviewModifier() {
     ComposestudyTheme {
         ModifierEx()
+    }
+}
+
+/**
+ * BOX 실습
+ */
+@Composable
+fun BoxEx() {
+//    Box(modifier = Modifier.size(100.dp)) {
+//        Text(text = "Hello World", modifier = Modifier.align(Alignment.Center))
+//    }
+
+    // 스텝 1: Text 두 개를 Box 안에 배치해봅시다.
+//    Box(modifier = Modifier.size(100.dp)) {
+//        Text(text = "Hello World", modifier = Modifier.align(Alignment.BottomEnd))
+//        Text(text = "Jetpack", modifier = Modifier.align(Alignment.CenterEnd))
+//    }
+
+    // 스텝 2: 2개의 Box를 Box 안에 배치하고 사이즈를 70dp, 색상을 각기 다르게 해봅시다.
+//    Box(modifier = Modifier.size(100.dp)) {
+//        Box(modifier = Modifier.size(70.dp).background(Color.Cyan).align(Alignment.CenterStart))
+//        Box(modifier = Modifier.size(70.dp).background(Color.Yellow).align(Alignment.BottomEnd))
+//    }
+    
+    // 스텝 3: 부모 Box에 modifier 설정을 제거해서 컨텐트 사이즈만큼 보여주게 합시다.
+    // 그리고 첫 번째 자식 Box의 사이즈를 matchParentSize()로 설정해봅시다.
+    // 다음에는 fillMaxSize()로 설정해봅시다.
+    Box {
+        Box(modifier = Modifier.fillMaxSize().background(Color.Cyan).align(Alignment.CenterStart))
+        Box(modifier = Modifier.size(70.dp).background(Color.Yellow).align(Alignment.Center))
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreviewBox() {
+    ComposestudyTheme {
+        BoxEx()
     }
 }
