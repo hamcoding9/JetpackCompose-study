@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.Composable
@@ -503,8 +504,14 @@ fun BoxEx() {
     // 그리고 첫 번째 자식 Box의 사이즈를 matchParentSize()로 설정해봅시다.
     // 다음에는 fillMaxSize()로 설정해봅시다.
     Box {
-        Box(modifier = Modifier.fillMaxSize().background(Color.Cyan).align(Alignment.CenterStart))
-        Box(modifier = Modifier.size(70.dp).background(Color.Yellow).align(Alignment.Center))
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Cyan)
+            .align(Alignment.CenterStart))
+        Box(modifier = Modifier
+            .size(70.dp)
+            .background(Color.Yellow)
+            .align(Alignment.Center))
     }
 }
 @Preview(showBackground = true)
@@ -512,5 +519,100 @@ fun BoxEx() {
 fun DefaultPreviewBox() {
     ComposestudyTheme {
         BoxEx()
+    }
+}
+
+/**
+ * Row 학습
+ */
+@Composable
+fun RowEx() {
+//    Row(modifier = Modifier.height(40.dp)) {
+//        Text(text = "첫 번째!")
+//        Text(text = "두 번째!")
+//        Text(text = "세 번째!")
+//    }
+
+    // 스텝 1: 각 Text의 modifier에 align을 설정합시다.
+    // Alignment.Top, CenterVertically, Bottom을 지정해봅시다.
+    // Row의 기본 방향은 horizontally하고, Modifier로 지정할 수 있는 방향은 Vertically하다.
+//    Row(modifier = Modifier.height(40.dp)) {
+//        Text(text = "첫 번째!", modifier = Modifier.align(Alignment.Top))
+//        Text(text = "두 번째!", modifier = Modifier.align(Alignment.CenterVertically))
+//        Text(text = "세 번째!", modifier = Modifier.align(Alignment.Bottom))
+//    }
+
+    // 스텝 2: Row에 verticalAlignment를 설정해봅시다.
+    // 자식 Component에 동일한 Alignment를 주고 싶을 때!
+//    Row(
+//        modifier = Modifier.height(40.dp),
+//        verticalAlignment = Alignment.Bottom
+//    ) {
+//        Text(text = "첫 번째!")
+//        Text(text = "두 번째!")
+//        Text(text = "세 번째!")
+//    }
+
+    // 스텝 3: Row의 width를 200dp로 설정합시다.
+    // Row에 horizontalArrangement에 Arrangment.Center를
+    // 설정해봅시다. Start, End, SpaceAround, SpaceBetween
+    // SpaceEvenly를 설정해봅시다.
+//    Row(
+//        verticalAlignment = Alignment.Bottom,
+//        modifier = Modifier.height(40.dp).width(200.dp),
+//        horizontalArrangement = Arrangement.Center
+//    ) {
+//        Text(text = "첫 번째!", modifier = Modifier.align(Alignment.Top))
+//        Text(text = "두 번째!")
+//        Text(text = "세 번째!")
+//    }
+
+    // 스텝 4: horizontalArrangement를 제거하고 각 Text에
+    // Modifier.weight를 설정합시다. 각 항목의 weight 값을 바꾸어 보세요.
+//    Row(
+//        verticalAlignment = Alignment.Bottom,
+//        modifier = Modifier
+//            .height(40.dp)
+//            .width(200.dp)
+//    ) {
+//        Text(text = "첫 번째!",
+//            modifier = Modifier.weight(3f)
+//        )
+//        Text(
+//            text = "두 번째!",
+//            modifier = Modifier.weight(3f)
+//        )
+//        Text(
+//            text = "세 번째!",
+//            modifier = Modifier.weight(3f)
+//        )}
+
+    // 스텝 5: Text 대신 Icon을 하나 넣어봅시다.
+    Row(
+        verticalAlignment = Alignment.Bottom,
+        modifier = Modifier
+            .height(40.dp)
+            .width(200.dp)
+    ) {
+        Text(text = "첫 번째!",
+            modifier = Modifier.weight(3f)
+        )
+        Icon(
+            imageVector = Icons.Filled.Add,
+            contentDescription = "추가",
+            modifier = Modifier.weight(1f)
+                .background(Color.Cyan)
+        )
+        Text(
+            text = "세 번째!",
+            modifier = Modifier.weight(3f)
+        )}
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreviewRow() {
+    ComposestudyTheme{
+        RowEx()
     }
 }
